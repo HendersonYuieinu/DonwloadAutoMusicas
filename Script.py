@@ -1,5 +1,5 @@
 from yt_dlp import YoutubeDL
-import os
+from os import path
 
 class download_API():
     def __init__(self):
@@ -14,7 +14,7 @@ class download_API():
                     'preferredcodec': 'mp3',
                     'preferredquality': '192',
                 }],
-                'outtmpl': os.path.join(self.Download_folder, '%(title)s.%(ext)s'),
+                'outtmpl': path.join(self.Download_folder, '%(title)s.%(ext)s'),
 
                 }
         

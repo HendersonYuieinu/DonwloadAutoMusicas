@@ -1,20 +1,39 @@
-import flet as ft
+from flet import (
+    Page,
+    ThemeMode,
+    MainAxisAlignment,
+    CrossAxisAlignment,
+    alignment,
+    TextAlign,
+    FontWeight,
+    CupertinoButton,
+    Column,
+    Container,
+    TextField,
+    Text,
+    Row,
+    border,
+    app,
+    margin
+)
 from Script import download_API
 import time
+
+
 from utils import musiccard
 
 
-def main(page: ft.Page):
+def main(page: Page):
     page.bgcolor = '#F2F4F8'
-    page.theme_mode = ft.ThemeMode.LIGHT
+    page.theme_mode = ThemeMode.LIGHT
     page.title = "DownMusic"
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.vertical_alignment = MainAxisAlignment.CENTER
     page.window.width = 600
     page.window.height = 800
     page.padding = 20
     page.window.min_width = 400
     page.window.min_height = 600
-    page.window.alignment = ft.alignment.center
+    page.window.alignment = alignment.center
     page.window.resizable = False
     
     selecionados = {}
@@ -92,66 +111,66 @@ def main(page: ft.Page):
         page.update()
         return True
 
-    link_music = ft.TextField(hint_text='Digite a url aqui...', text_align=ft.TextAlign.LEFT, expand=True, bgcolor="white", color='black')
-    aviso = ft.Text(avisor, size=25, font_family="Arial", weight=ft.FontWeight.BOLD)
-    intro_text = ft.Container(
-                        content = ft.Text('Baixar audio do youtube em mp3', size=25, weight = ft.FontWeight.BOLD, font_family="Arial", text_align=ft.TextAlign.CENTER, color='black'),
-                        margin = ft.margin.only(bottom=20),
-                        alignment = ft.alignment.center,
+    link_music = TextField(hint_text='Digite a url aqui...', text_align=TextAlign.LEFT, expand=True, bgcolor="white", color='black')
+    aviso = Text(avisor, size=25, font_family="Arial", weight=FontWeight.BOLD)
+    intro_text = Container(
+                        content = Text('Baixar audio do youtube em mp3', size=25, weight = FontWeight.BOLD, font_family="Arial", text_align=TextAlign.CENTER, color='black'),
+                        margin = margin.only(bottom=20),
+                        alignment = alignment.center,
                         #bgcolor = "pink"          
                     )
-    botaoADD = ft.CupertinoButton("Adicionar", on_click=adicionar, bgcolor='#0057D9', color='#FFFFFF', width=150, height=50)
-    botaoDownload = ft.CupertinoButton("Download", on_click=baixar, bgcolor='#0057D9', color='#FFFFFF', width = 250)
+    botaoADD = CupertinoButton("Adicionar", on_click=adicionar, bgcolor='#0057D9', color='#FFFFFF', width=150, height=50)
+    botaoDownload = CupertinoButton("Download", on_click=baixar, bgcolor='#0057D9', color='#FFFFFF', width = 250)
 
-    LISTselecionados = ft.Column(
+    LISTselecionados = Column(
         controls=[],
         expand=True,
         width=500,
         scroll="auto",
     )
     
-    lista = ft.Container(
+    lista = Container(
         content=LISTselecionados,
         expand=True,
         #bgcolor="white",
-        alignment=ft.alignment.top_center,
-        border=ft.border.all(1, '#0057D9'),
+        alignment=alignment.top_center,
+        border=border.all(1, '#0057D9'),
         border_radius=8,
     )
     
-    campos = ft.Container(
-        content = ft.Row(
+    campos = Container(
+        content = Row(
             [link_music, botaoADD], 
         ),
-        alignment = ft.alignment.center,
+        alignment = alignment.center,
         #bgcolor = 'green',
         padding = 10
     )
 
-    aviso_container = ft.Container(
+    aviso_container = Container(
         content = aviso,
-        alignment = ft.alignment.center
+        alignment = alignment.center
     )
     
-    main = ft.Column(
+    main = Column(
         controls=[intro_text, campos, lista, botaoDownload, aviso_container],
-        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-        alignment=ft.MainAxisAlignment.START,
+        horizontal_alignment=CrossAxisAlignment.CENTER,
+        alignment=MainAxisAlignment.START,
         expand=True,
     )
     
     def update_layout(width, campos):
         if width <= 400:
-            campos.content = ft.Column(
+            campos.content = Column(
                     [link_music, botaoADD],
-                    alignment=ft.MainAxisAlignment.CENTER,
-                    horizontal_alignment=ft.CrossAxisAlignment.CENTER
+                    alignment=MainAxisAlignment.CENTER,
+                    horizontal_alignment=CrossAxisAlignment.CENTER
                 )
 
         else:
-            campos.content = ft.Row(
+            campos.content = Row(
                     [link_music, botaoADD],
-                    alignment = ft.MainAxisAlignment.CENTER,
+                    alignment = MainAxisAlignment.CENTER,
                 )
         page.update()
         
@@ -163,4 +182,4 @@ def main(page: ft.Page):
             main   
         )
     
-ft.app(host='0.0.0.0', target=main)
+app(host='0.0.0.0', target=main)
