@@ -5,15 +5,17 @@ from utils import musiccard
 
 
 def main(page: ft.Page):
-    page.bgcolor = 'blue100'
+    page.bgcolor = '#F2F4F8'
+    page.theme_mode = ft.ThemeMode.LIGHT
     page.title = "DownMusic"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    page.window.width = 700
-    page.window.height = 600
+    page.window.width = 600
+    page.window.height = 800
     page.padding = 20
     page.window.min_width = 400
     page.window.min_height = 600
     page.window.alignment = ft.alignment.center
+    page.window.resizable = False
     
     selecionados = {}
     
@@ -90,16 +92,16 @@ def main(page: ft.Page):
         page.update()
         return True
 
-    link_music = ft.TextField(hint_text='Digite a url aqui...', text_align=ft.TextAlign.LEFT, width=350, bgcolor="white", color='black')
+    link_music = ft.TextField(hint_text='Digite a url aqui...', text_align=ft.TextAlign.LEFT, expand=True, bgcolor="white", color='black')
     aviso = ft.Text(avisor, size=25, font_family="Arial", weight=ft.FontWeight.BOLD)
     intro_text = ft.Container(
-                        content = ft.Text('Baixar vídeos do youtube rapidamente, convertidos em mp3', size=25, weight = ft.FontWeight.BOLD, font_family="Arial", text_align=ft.TextAlign.CENTER, color='black'),
-                        margin = ft.margin.only(bottom=50),
+                        content = ft.Text('Baixar audio do youtube em mp3', size=25, weight = ft.FontWeight.BOLD, font_family="Arial", text_align=ft.TextAlign.CENTER, color='black'),
+                        margin = ft.margin.only(bottom=20),
                         alignment = ft.alignment.center,
                         #bgcolor = "pink"          
                     )
-    botaoADD = ft.CupertinoButton("Adicionar", on_click=adicionar, bgcolor='blue', color='white', width = 150, height=50)
-    botaoDownload = ft.CupertinoButton("Download", on_click=baixar, bgcolor='blue', color='white', width = 250)
+    botaoADD = ft.CupertinoButton("Adicionar", on_click=adicionar, bgcolor='#0057D9', color='#FFFFFF', width=150, height=50)
+    botaoDownload = ft.CupertinoButton("Download", on_click=baixar, bgcolor='#0057D9', color='#FFFFFF', width = 250)
 
     LISTselecionados = ft.Column(
         controls=[],
@@ -111,15 +113,15 @@ def main(page: ft.Page):
     lista = ft.Container(
         content=LISTselecionados,
         expand=True,
-        bgcolor="white",
-        alignment=ft.alignment.top_left,
-        #border=ft.border.all(1, 'black'),
+        #bgcolor="white",
+        alignment=ft.alignment.top_center,
+        border=ft.border.all(1, '#0057D9'),
+        border_radius=8,
     )
     
     campos = ft.Container(
         content = ft.Row(
-            [link_music, botaoADD],
-            alignment = ft.MainAxisAlignment.CENTER 
+            [link_music, botaoADD], 
         ),
         alignment = ft.alignment.center,
         #bgcolor = 'green',
@@ -131,8 +133,15 @@ def main(page: ft.Page):
         alignment = ft.alignment.center
     )
     
+    main = ft.Column(
+        controls=[intro_text, campos, lista, botaoDownload, aviso_container],
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+        alignment=ft.MainAxisAlignment.START,
+        expand=True,
+    )
+    
     def update_layout(width, campos):
-        if width <= 600:
+        if width <= 400:
             campos.content = ft.Column(
                     [link_music, botaoADD],
                     alignment=ft.MainAxisAlignment.CENTER,
@@ -151,16 +160,7 @@ def main(page: ft.Page):
     update_layout(page.window.width, campos)
     
     page.add(
-            intro_text   
+            main   
         )
-    page.add(
-            campos    
-        )
-    page.add(
-        lista
-    )
-    page.add(
-            aviso_container
-        )    
     
 ft.app(host='0.0.0.0', target=main)
