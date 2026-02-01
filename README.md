@@ -61,9 +61,12 @@ Aqui estão algumas demonstrações da interface do **DownloadAutoMusicas**:
 https://github.com/user-attachments/assets/8651fd6d-d1f9-49a8-893b-cfa046317647
 
 ---
+
 ## 🛠️ Futuras melhorias
 
 - Escolha da qualidade do áudio pelo usuário  
 - Opções avançadas de configuração de download  
 - Melhorias na interface gráfica
 
+## adendo:
+para o código rodar corretamento, é necessário ter instalado o ffmpeg e configurado no PATH do sistema. ao transformar em executável eu envio junto o ffmpeg na pasta /dist, gerado pelo flet.
