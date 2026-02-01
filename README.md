@@ -45,12 +45,6 @@ Seu objetivo é simples: baixar músicas do YouTube em formato **MP3** com quali
 
 ---
 
-## 🛠️ Futuras melhorias
-
-- Escolha da qualidade do áudio pelo usuário  
-- Opções avançadas de configuração de download  
-- Melhorias na interface gráfica
-
 ## 📸 Capturas de Tela
 
 Aqui estão algumas demonstrações da interface do **DownloadAutoMusicas**:
@@ -64,7 +58,12 @@ Aqui estão algumas demonstrações da interface do **DownloadAutoMusicas**:
 
 
 ### Processo de download
-
 https://github.com/user-attachments/assets/8651fd6d-d1f9-49a8-893b-cfa046317647
 
+---
+## 🛠️ Futuras melhorias
+
+- Escolha da qualidade do áudio pelo usuário  
+- Opções avançadas de configuração de download  
+- Melhorias na interface gráfica
 
